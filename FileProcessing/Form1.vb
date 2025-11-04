@@ -1,10 +1,10 @@
 ﻿Imports System.IO
 
 Public Class Form1
+    Dim filePath As String = "sample.txt"
+
     Private Sub ButtonWrite_Click(sender As Object, e As EventArgs) Handles ButtonWrite.Click
         Try
-            Dim filePath As String = "sample.txt"
-
             Using writer As New StreamWriter(filePath, True) ' True to append
                 writer.WriteLine("Hello, this is a test file!")
                 writer.WriteLine("Second line of text.")
@@ -18,11 +18,16 @@ Public Class Form1
     End Sub
 
     Private Sub ButtonRead_Click(sender As Object, e As EventArgs) Handles ButtonRead.Click
-        Dim filePath As String = "sample.txt"
-
         Using reader As New StreamReader(filePath)
             Dim content As String = reader.ReadToEnd()
             MessageBox.Show(content, "File Content:")
+        End Using
+    End Sub
+
+    Private Sub ButtonReadPerLine_Click(sender As Object, e As EventArgs) Handles ButtonReadPerLine.Click
+        Using reader As New StreamReader(filePath)
+            Dim line As String = reader.ReadLine()
+            MessageBox.Show(line)
         End Using
     End Sub
 End Class
